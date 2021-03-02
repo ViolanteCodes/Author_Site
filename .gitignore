@@ -15,6 +15,9 @@ db.sqlite3
 # Static folder at project root
 /static/
 
+# User contributed media
+/media/
+
 # macOS
 ._*
 .DS_Store

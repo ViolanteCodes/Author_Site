@@ -1,14 +1,21 @@
 from django.db import models
 
-from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
+# Imports for tagging
+from modelcluster.fields import ParentalKey
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from taggit.models import TaggedItemBase
+
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core import blocks
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
 
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
-
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
     ]
@@ -20,18 +27,36 @@ class BlogIndexPage(Page):
         context['blogpages'] = blogpages
         return context
 
+class BlogPageTag(TaggedItemBase):
+    content_object = ParentalKey(
+        'BlogPage',
+        related_name='tagged_items',
+        on_delete=models.CASCADE
+    )
+
 class BlogPage(Page):
     date = models.DateField("Post date")
-    intro = models.CharField(max_length=250)
-    body = RichTextField(blank=True)
-
-    search_fields = Page.search_fields + [
-        index.SearchField('intro'),
-        index.SearchField('body'),
-    ]
+    teaser = models.CharField(max_length=250)
+    author = models.CharField(max_length=250)
+    body = StreamField([
+        ('subheading', blocks.CharBlock(form_classname="full title")),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ])
+    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('author'),
         FieldPanel('date'),
-        FieldPanel('intro'),
-        FieldPanel('body', classname="full"),
+        FieldPanel('teaser'),
+        StreamFieldPanel('body'),
+        FieldPanel('tags'),
     ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('teaser'),
+        index.SearchField('body'),
+        index.SearchField('tags')
+    ]
+
+
