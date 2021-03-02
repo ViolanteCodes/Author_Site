@@ -7,3 +7,6 @@
 ### X.X Python-Decouple
 
 Environmental Variable Storage
+
+#### Maria To-Do:
+- Add sample .env file
