@@ -6,20 +6,21 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="jumbotron text-white bg-primary">
-    <h1 class="text-white">
-        {{ page.jumbotron_text|richtext}}
-    </h1>
-    <div class="row">
-        <div class="col-6">
-            <div class="card text-white bg-primary">
-                {% image page.jumbotron_left_image width-400 %}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron fluid text-light bg-primary">
+        <h1 class="text-light">
+            {{ page.jumbotron_text|richtext}}
+        </h1>
+        <div class="row">
+            <div class="col-6">
+                <div class="card text-white bg-primary">
+                    {% image page.jumbotron_left_image width-400 %}
+                </div>
             </div>
-        </div>
-        <div class="col-6">
-            <div class="card text-white bg-primary">
-                {% image page.jumbotron_right_image width-400 %}
+            <div class="col-6">
+                <div class="card text-white bg-primary">
+                    {% image page.jumbotron_right_image width-400 %}
+                </div>
             </div>
         </div>
     </div>
