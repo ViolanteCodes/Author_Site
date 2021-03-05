@@ -5,23 +5,19 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-{% image page.jumbotron_background min-1000x200 as jumbotron_background %}
+{% image page.jumbotron_background min-2000x400 as jumbotron_background %}
 
 <div class="container-fluid">
-    <div class="jumbotron text-light bg-primary" style="background-image: url({{ jumbotron_background.url }})">
+    <div class="jumbotron jumbotron-fluid text-light bg-primary jumbotron-landing" style="background-image: url({{ jumbotron_background.url }})">
         <h1 class="text-light">
             {{ page.jumbotron_text|richtext}}
         </h1>
         <div class="row">
             <div class="col-6">
-                <div class="card text-white bg-primary">
                     {% image page.jumbotron_left_image height-400 %}
-                </div>
             </div>
             <div class="col-6">
-                <div class="card text-white bg-primary">
                     {% image page.jumbotron_right_image height-400 %}
-                </div>
             </div>
         </div>
     </div>
