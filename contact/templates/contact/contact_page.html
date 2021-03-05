@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    <div class="container">
+    <form method="post">
+    {% csrf_token %}
+    {{form.errors}}
+    {% for field in form %}
+    <div class="fieldWrapper form-group">
+        {{ field.errors }}
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-0">{{ field.label_tag }}</div>
+            </div>
+        </div>
+
+        {% if field.help_text %}
+        <div class="row">
+            <div class="col-12">
+                <div class="help small p-0 text-muted mb-2">
+                {{ field.help_text|safe }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-12">
+                <div class="flex-form mb-3">{{ field }}</div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <button type="submit" value="send" class="btn btn-lg btn-primary mr-2">Send My Message</button>
+    </form>
+    </div>
+{% endblock %}

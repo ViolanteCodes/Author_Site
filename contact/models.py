@@ -1,27 +1,23 @@
-from django.db import models
-from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
 from django.conf import settings
+from django.db import models
 from django import forms
 from django.core.mail import send_mail
+from django.shortcuts import render
 
-class ContactForm(forms.Form):
-    your_name = forms.CharField(max_length = 100)
-    your_email = forms.EmailField()
-    subject = forms.CharField(max_length = 100)
-    your_message = forms.CharField(widet = forms.Textarea)
-     
+from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel
+
+   
 class ContactPage(Page):
     """A custom contact page with contact form."""
     body = RichTextField(blank=True)
-
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full")
     ]
 
-    def send_form(self, request):
+    def serve(self, request):
+        from contact.forms import ContactForm
         form = ContactForm(request.POST)
         if form.is_valid():
             # Clean the data
@@ -37,10 +33,10 @@ class ContactPage(Page):
             Sender's Email:{senders_email}\n\nSubject:{message_subject}\n\n
             Message Body: {message}"""
             # And send
+            # Add a try/except block with errors!
             send_mail(subject_line, message_body, senders_email, CONTACT_EMAIL)
         else:
             form = ContactForm()
-
         return render(request, 'contact/contact_page.html', {
             'page':self,
             'form':form,

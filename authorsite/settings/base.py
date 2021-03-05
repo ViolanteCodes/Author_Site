@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'home',
     'search',
     'blog',
+    'contact',
 
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
