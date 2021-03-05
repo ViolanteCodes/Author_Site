@@ -29,6 +29,9 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+        {% load menu_tags %}
+        {% main_menu max_levels=3 template="menus/custom_main_menu.html" %}
+
         {% block content %}{% endblock %}
 
         {# Global javascript #}
