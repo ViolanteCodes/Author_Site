@@ -165,9 +165,11 @@ MEDIA_URL = '/media/'
 # Email Settings:
 
 EMAIL_BACKEND = config('EMAIL_BACKEND')
+CONTACT_EMAIL = config('CONTACT_EMAIL')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = config('WAGTAIL_SITE_NAME')
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
