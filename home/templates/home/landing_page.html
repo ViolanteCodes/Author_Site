@@ -7,21 +7,23 @@
 {% block content %}
 {% image page.jumbotron_background min-2000x400 as jumbotron_background %}
 
-<div class="container-fluid jumbotron jumbotron-fluid text-light bg-primary jumbotron-landing px-4 row col-12">
-    <div class="col-4">
-        {% image page.jumbotron_left_image height-400 %}
-    </div>
-    <div class="col-8" style="background-image: url({{ jumbotron_background.url }})">
-        <div class="row">
-            <div class="col-4">
-                <h1 class="text-light">
-                    {{ page.jumbotron_text|richtext}}
-                </h1>
-            </div>
-            <div class="col-4">
-                {% image page.jumbotron_right_image height-400 %}
-            </div>
+<div class="container-fluid row mx-0 align-items-center" style="background-image:url({{ jumbotron_background.url }}); background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    height: 75vh">
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+            <h3 class="text-light display-4 text-right">
+                {{page.jumbotron_text|richtext}}
+            </h3>
+        </div>
+        <div class="col-4 height-75 align-self-left">
+            {% image page.jumbotron_right_image height-2000 as right_image %}
+            <img src="{{right_image.url}}" class="height-76 d-inline-block p-4" style="max-height:70vh">
         </div>
     </div>
+    
 </div>
 {% endblock %}
