@@ -25,16 +25,18 @@ class ContactPage(Page):
             senders_email = form.cleaned_data['your_email']
             message_subject = form.cleaned_data['subject']
             message = form.cleaned_data['your_message']
+            site_name = settings.WAGTAIL_SITE_NAME
+            to_email = settings.CONTACT_EMAIL
             #Process the form info to get it ready for send_mail
-            subject_line = f"""New message from {WAGTAIL_SITE_NAME} contact form: 
+            subject_line = f"""New message from {site_name} contact form: 
             {message_subject}"""
             message_body = f"""You have recieved the following message from
-            your website, {WAGTAIL_SITE_NAME}:\n\nSender's Name: {senders_name}\n\n
+            your website, {site_name}:\n\nSender's Name: {senders_name}\n\n
             Sender's Email:{senders_email}\n\nSubject:{message_subject}\n\n
             Message Body: {message}"""
             # And send
             # Add a try/except block with errors!
-            send_mail(subject_line, message_body, senders_email, CONTACT_EMAIL)
+            send_mail(subject_line, message_body, senders_email, [to_email])
         else:
             form = ContactForm()
         return render(request, 'contact/contact_page.html', {
