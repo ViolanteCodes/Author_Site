@@ -22,3 +22,5 @@ Boostrap theme link in environment
 
 #### Maria To-Do:
 - Add sample .env file
+- create success url/template
+- finish contact form model (header injection/ try except block)
