@@ -2,7 +2,7 @@ html {
     background-color: #1a1a1a;
     font:aliceblue;
 }
-body {
+body.template-homepage{
     background-color: #1a1a1a;
     font:aliceblue;
 }
