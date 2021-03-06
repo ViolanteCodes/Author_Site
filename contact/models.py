@@ -35,8 +35,9 @@ class ContactPage(Page):
             Sender's Email:{senders_email}\n\nSubject:{message_subject}\n\n
             Message Body: {message}"""
             # And send
-            # Add a try/except block with errors!
+            # Add a try/except block with errors, including for HTTP header injection!
             send_mail(subject_line, message_body, senders_email, [to_email])
+            # create the success url render / template
         else:
             form = ContactForm()
         return render(request, 'contact/contact_page.html', {
