@@ -6,7 +6,7 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core import blocks
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.models import Image
 from wagtail.search import index
 
 # Create your models here.
@@ -28,6 +28,13 @@ class Genre(models.Model):
 class PenName(models.Model):
     """A representation of an author's pen name."""
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200)
+    def __str__(self):
+        return self.name
+    
+class ContentWarning(models.Model):
+    """A representatation of a content warning."""
+    warning = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     def __str__(self):
         return self.name
@@ -73,12 +80,27 @@ class BookPage(Page):
     author = models.ForeignKey(PenName, on_delete=models.SET_NULL, null=True)
     series = models.ForeignKey(Series, blank=True, null=True, on_delete=models.SET_NULL)
     release_date = models.DateField(blank=True)
+    genre = models.ManyToManyField(Genre, blank=True)
     description = RichTextField(blank=True)
-
+    content_warnings = models.ManyToManyField(ContentWarning, blank=True)
+    cover_image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.SET_NULL, related_name='+', null=True, blank=True
+    )
+    other_text = RichTextField(blank=True)
+    # Add content panels
     content_panels = Page.content_panels + [
-    InlinePanel('buy_links', label="Buy Links"),
-    InlinePanel('book_reviews', label="Book Reviews"),
-  ]
+        FieldPanel('book_title', classname="full"),
+        FieldPanel('author', classname="full"),
+        FieldPanel('series', classname="full"),
+        FieldPanel('release_date'),
+        FieldPanel('genre'),
+        FieldPanel('description', classname="full"),
+        ImageChooserPanel('cover_image'),
+        FieldPanel('content_warnings'),
+        FieldPanel('other_text'),
+        InlinePanel('buy_links', label="Buy Links"),
+        InlinePanel('book_reviews', label="Book Reviews"),
+    ]
 
 class BooksIndexPage(Page):
     intro = RichTextField(blank=True)
