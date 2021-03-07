@@ -97,7 +97,7 @@ class BookPage(Page):
     series = models.ForeignKey(
         'wagtailcore.Page', on_delete=models.SET_NULL, blank=True, null=True, related_name='+')
     release_date = models.DateField(blank=True, null=True)
-    genre = models.ManyToManyField('books.Genre', blank=True, null=True)
+    genre = models.ManyToManyField('books.Genre', blank=True)
     description = RichTextField(blank=True)
     content_warnings = models.ManyToManyField('books.ContentWarning', blank=True)
     cover_image = models.ForeignKey(
