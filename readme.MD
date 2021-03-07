@@ -6,7 +6,6 @@
 
 Page Creation Order
 Home Page + make available for menu
-Author Page as Child of HomePage + make avaialble for menu
 BookIndexPage as Child of HomePage + make available for menu
 Series Page as Child of BookIndexPage + make available for menu
 Book Page as Child of SeriesPage

@@ -124,6 +124,9 @@ class BookPage(Page):
     other_text = RichTextField(blank=True, null=True, help_text="""This is an optional field. Text
     added and formatted here will appear close to the bottom of the book page, right above the section
     for content warnings.""")
+    sort_order = models.IntegerField(null=True, blank=True, help_text="""This field is optional, but if filled in,
+    it lets you pick where this book shows up in the "all books" section of your website. The higher the number, the 
+    closer to the top of the page the book will be.""")
     # Add content panels
     content_panels = Page.content_panels + [
         FieldPanel('book_title', classname="full"),
@@ -133,6 +136,7 @@ class BookPage(Page):
         FieldPanel('genre'),
         FieldPanel('description', classname="full"),
         ImageChooserPanel('cover_image'),
+        FieldPanel('sort_order'),
         FieldPanel('content_warnings'),
         FieldPanel('other_text'),
         InlinePanel('buy_links', label="Buy Links"),
@@ -150,7 +154,7 @@ class BooksIndexPage(RoutablePageMixin, Page):
         """
        View Function that shows all books.
         """
-        book_list = BookPage.objects.live().order_by('-first_published_at')
+        book_list = BookPage.objects.live().order_by('-sort_order')
         return self.render(request, context_overrides={
             'book_list': book_list,
         })
