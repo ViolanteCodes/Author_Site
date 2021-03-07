@@ -27,7 +27,7 @@ class ContentWarningAdmin(ModelAdmin):
     menu_order = 501
     add_to_settings_menu = False
     exclude_from_explorer = False
-    list_display=('warning_name', 'warning_slug')
+    list_display=('name')
 
 modeladmin_register(GenreAdmin)
 modeladmin_register(ContentWarningAdmin)
