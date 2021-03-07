@@ -99,18 +99,31 @@ class BookPageReviewBox(Orderable, BookReview):
 ### Book Page ###
 class BookPage(Page):
     """A page for an individual book."""
-    book_title = models.CharField(max_length=200)
+    book_title = models.CharField(max_length=200, help_text="""The exact title of the book. It will 
+    be saved in this format in the database to display on related pages.""")
     author = models.ForeignKey(
-        'wagtailcore.Page', on_delete=models.SET_NULL, blank=True, null=True, related_name='+')
+        'wagtailcore.Page', on_delete=models.SET_NULL, blank=True, null=True, related_name='+', 
+        help_text="""Choose one of your Author Pages to assign a pen name to this book. 
+        If you don't see the pen name you want, you might need to set up a new AuthorPage 
+        for that pen name!""")
     series = models.ForeignKey(
-        'wagtailcore.Page', on_delete=models.SET_NULL, blank=True, null=True, related_name='+')
-    release_date = models.DateField(blank=True, null=True)
-    genre = models.ManyToManyField('books.Genre', blank=True)
-    description = RichTextField(blank=True)
-    content_warnings = models.ManyToManyField('books.ContentWarning', blank=True)
+        'wagtailcore.Page', on_delete=models.SET_NULL, blank=True, null=True, related_name='+', 
+        help_text="""Choose a series page to assign this book to a Series. If you don't see
+        the series you want, you might need to set up a new Series Page.""")
+    release_date = models.DateField(blank=True, null=True, help_text="""The book release date. This
+    field is optional.""")
+    genre = models.ManyToManyField('books.Genre', blank=True, help_text = """Optional: Choose one or more
+    genres for this book. If you don't see the genre you need, click "Add Genre to List" from the menu
+    on the left and add in your genre.""")
+    description = RichTextField(blank=True, null=True, help_text="""A description of your book.""")
+    content_warnings = models.ManyToManyField('books.ContentWarning', blank=True, help_text="""(Optional):
+    Choose one or more content warnings for this book. If you don't see the warning you want listed here,
+    click "Add Content Warnings on the menu on the left and add in your warnings.""")
     cover_image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.SET_NULL, related_name='+', null=True, blank=True)
-    other_text = RichTextField(blank=True)
+    other_text = RichTextField(blank=True, null=True, help_text="""This is an optional field. Text
+    added and formatted here will appear close to the bottom of the book page, right above the section
+    for content warnings.""")
     # Add content panels
     content_panels = Page.content_panels + [
         FieldPanel('book_title', classname="full"),
