@@ -9,7 +9,7 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePane
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image
 from wagtail.search import index
-
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from django.utils.text import slugify  
 
 # Create your models here.
@@ -139,15 +139,18 @@ class BookPage(Page):
         InlinePanel('book_reviews', label="Book Reviews"),
     ]
 
-class BooksIndexPage(Page):
+class BooksIndexPage(RoutablePageMixin, Page):
     intro = RichTextField(blank=True)
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
     ]
 
-    def get_context(self, request):
-        # Update context to include only published posts, ordered by reverse-chron
-        context = super().get_context(request)
-        books = self.get_children().live().order_by('-first_published_at')
-        context['books'] = books
-        return context
+    @route(r'^$', name='all') # override the default route
+    def all_books(self, request):
+        """
+       View Function that shows all books.
+        """
+        book_list = BookPage.objects.live().order_by('-first_published_at')
+        return self.render(request, context_overrides={
+            'book_list': book_list,
+        })
