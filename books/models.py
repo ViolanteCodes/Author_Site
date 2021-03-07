@@ -1,22 +1,27 @@
+from django import forms
 from django.db import models
-
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core import blocks
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image
+from wagtail.snippets.models import register_snippet
 from wagtail.search import index
 
 # Create your models here.
 
-class Series(models.Model):
-    """A representation of a book series."""
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
-    def __str__(self):
-        return self.name
+class SeriesPage(Page):
+    """A page to represent a book series."""
+    series_name = models.CharField(max_length=200)
+    total_books = models.IntegerField()
+    series_description = RichTextField(blank=True)
+    content_panels = Page.content_panels + [
+        FieldPanel('series_name'),
+        FieldPanel('series_description'),
+        FieldPanel('total_books'),
+    ]
 
 class Genre(models.Model):
     """A representation of a genre."""
@@ -78,7 +83,8 @@ class BookPage(Page):
     """A page for an author's book."""
     book_title = models.CharField(max_length=200)
     author = models.ForeignKey(PenName, on_delete=models.SET_NULL, null=True)
-    series = models.ForeignKey(Series, blank=True, null=True, on_delete=models.SET_NULL)
+    series = models.ForeignKey(
+        'wagtailcore.Page', on_delete=models.SET_NULL, blank=True, null=True, related_name='+')
     release_date = models.DateField(blank=True)
     genre = models.ManyToManyField(Genre, blank=True)
     description = RichTextField(blank=True)
@@ -91,7 +97,7 @@ class BookPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('book_title', classname="full"),
         FieldPanel('author', classname="full"),
-        FieldPanel('series', classname="full"),
+        PageChooserPanel('series', 'books.SeriesPage'),
         FieldPanel('release_date'),
         FieldPanel('genre'),
         FieldPanel('description', classname="full"),
