@@ -27,11 +27,14 @@ class Genre(models.Model):
 
 class ContentWarning(models.Model):
     """A representatation of a content warning."""
-    warning_name = models.CharField(max_length=200)
-    warning_slug = models.SlugField(max_length=200)
+    name = models.CharField(max_length=200)
+
+    def save(self, *args, **kwargs): 
+        self.slug = slugify(self.name) 
+        super(ContentWarning, self).save(*args, **kwargs) 
 
     def __str__(self):
-        return self.warning_name
+        return self.name
 
 class AuthorPage(Page):
     """A representation of an author's pen name."""
