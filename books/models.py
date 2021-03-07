@@ -10,15 +10,20 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image
 from wagtail.search import index
 
+from django.utils.text import slugify  
+
 # Create your models here.
 
 class Genre(models.Model):
     """A representation of a genre."""
-    genre_name = models.CharField(max_length=200)
-    genre_slug = models.SlugField(max_length=200)
+    name = models.CharField(max_length=200)
+
+    def save(self, *args, **kwargs): 
+        self.slug = slugify(self.name) 
+        super(Genre, self).save(*args, **kwargs) 
 
     def __str__(self):
-        return self.genre_name
+        return self.name
 
 class ContentWarning(models.Model):
     """A representatation of a content warning."""
