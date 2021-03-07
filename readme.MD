@@ -2,6 +2,15 @@
 
 ## Table of Contents
 
+## Setup Order
+
+Pages
+Home Page
+Author Page as Child of HomePage
+Series Page as Child of HomePage
+Book Index Page as Child of HomePage
+Book Page as Child of Book Index Page
+
 ## X.X Packages
 
 ### X.X Python-Decouple
