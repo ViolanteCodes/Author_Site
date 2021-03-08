@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
+    'wagtail.contrib.settings',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.contrib.routable_page',
@@ -185,6 +186,8 @@ try:
 except ImportError:
     pass
 
+# Django-Bootstrap Settings
+
 BOOTSTRAP4 = {
     # The complete URL to the Bootstrap CSS file
     # Note that a URL can be either a string,
@@ -262,5 +265,12 @@ BOOTSTRAP4 = {
     'field_renderers': {
         'default': 'bootstrap4.renderers.FieldRenderer',
         'inline': 'bootstrap4.renderers.InlineFieldRenderer',
+    },
+}
+# DJANGO ICONS SETTINGS
+# Assign name and icon.
+DJANGO_ICONS = {
+    "ICONS": {
+        "twitter": {"name": "fab fa-twitter"},
     },
 }
