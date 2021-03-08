@@ -12,16 +12,18 @@
     background-size: cover;
     background-position: left;
     height: 75vh">
-        <div class="col-4">
+        <div class="col-lg-4 col-sm-0">
         </div>
-        <div class="col-4">
-            <h3 class="text-light display-4 text-right">
-                {{page.caption_text|richtext}}
-            </h3>
+        <div class="col-lg-4 col-sm-6">
+            <div class="w-100">
+                <h3 class="text-light d-inline-block display-4 text-right">
+                    {{page.caption_text|richtext}}
+                </h3>
+            </div>
         </div>
-        <div class="col-4 height-75 align-self-left">
+        <div class="col-lg-4 col-sm-6 height-75 align-self-left">
             {% image page.book_image height-2000 as bookimg %}
-            <img src="{{bookimg.url}}" class="height-76 d-inline-block p-4" style="max-height:70vh">
+            <img src="{{bookimg.url}}" class="max-height-50 d-inline-block p-4 w-100">
         </div>
 </div>
 
