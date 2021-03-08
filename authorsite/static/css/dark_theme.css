@@ -39,3 +39,6 @@ img.max-vh-60 {
 .text-muted {
    color:#C0C6C9
 }
+a.buy-link:hover{
+    color:#ff0000;
+}
