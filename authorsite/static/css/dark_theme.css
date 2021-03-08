@@ -1,10 +1,10 @@
 html {
     background-color: #1a1a1a;
-    font:aliceblue;
+    color:#dee0e2;
 }
 body.template-homepage{
     background-color: #1a1a1a;
-    font:aliceblue;
+    color:#dee0e2;
 }
 div.container-dark {
     background-color: #141414;
@@ -29,3 +29,13 @@ img.max-vh-60 {
         line-height: 1.2;
     }
   }
+/* Books Page Custom Styling */
+.line-height-high {
+    line-height: 1.5rem;
+}
+.text-light {
+    color: #dee0e2;
+}
+.text-muted {
+   color:#C0C6C9
+}
