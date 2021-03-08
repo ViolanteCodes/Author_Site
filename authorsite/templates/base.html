@@ -32,7 +32,7 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% load menu_tags %}
-        {% main_menu max_levels=3 template="menus/custom_main_menu.html" %}
+        {% main_menu max_levels=3 add_sub_menus_inline=True template="menus/custom_main_menu.html" %}
 
         {% block content %}{% endblock %}
        
