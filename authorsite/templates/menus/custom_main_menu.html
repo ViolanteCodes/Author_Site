@@ -1,6 +1,7 @@
 {% load wagtailcore_tags %}
+{% load custom_filters %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
-  <a class="nav-link h2 text-warning px-4 mr-4" href="">Author Name</a>
+  <a class="nav-link h2 text-warning px-4 py-2 mr-4" href="">{% get_site_name %}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

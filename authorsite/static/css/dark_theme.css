@@ -6,3 +6,6 @@ body.template-homepage{
     background-color: #1a1a1a;
     font:aliceblue;
 }
+div.container-dark {
+    background-color: #141414;
+}
