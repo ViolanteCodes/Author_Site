@@ -35,7 +35,9 @@
         {% main_menu max_levels=3 add_sub_menus_inline=True template="menus/custom_main_menu.html" %}
 
         {% block content %}{% endblock %}
-       
+        {% block footer %}
+            {% include 'dark_footer.html' %}
+        {%endblock %}
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
