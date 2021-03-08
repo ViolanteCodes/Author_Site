@@ -115,6 +115,8 @@ class BookPage(Page):
     genre = models.ManyToManyField('books.Genre', blank=True, help_text = """Optional: Choose one or more
     genres for this book. If you don't see the genre you need, click "Add Genre to List" from the menu
     on the left and add in your genre.""")
+    teaser = models.TextField(blank=True, null=True, help_text="""A brief teaser description of your 
+    book. This is the paragraph that will show up on the "all books" page.""")
     description = RichTextField(blank=True, null=True, help_text="""A description of your book.""")
     content_warnings = models.ManyToManyField('books.ContentWarning', blank=True, help_text="""(Optional):
     Choose one or more content warnings for this book. If you don't see the warning you want listed here,
