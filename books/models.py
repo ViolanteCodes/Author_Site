@@ -148,7 +148,6 @@ class BooksIndexPage(RoutablePageMixin, Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
     ]
-
     @route(r'^$', name='all') # override the default route
     def all_books(self, request):
         """

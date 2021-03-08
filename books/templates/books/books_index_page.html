@@ -1,17 +1,35 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags static%}
 
-{% block body_class %}template-blogindexpage{% endblock %}
+{% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-    <h1 class="light-text">{{ page.title }}</h1>
-
-    <div class="intro">{{ page.intro|richtext }}</div>
-
+<div class="container">
+    <div class="row">
+        <h1 class="text-white">{{ page.title }}</h1>
+    </div>
+    <div class="row">
+        <div class="intro text-white">{{ page.intro|richtext }}</div>
+    </div>
+</div>
+<div class="container">
     {% for book in book_list %}
-        <h2><a href="{% pageurl book %}">{{ book.book_title }}</a></h2>
-        {{ book.description|richtext }}
+    <div class="row align-items-start">
+        <div class="col-8 card text-white bg-primary">
+            <div class="card-body bg-primary">
+                <h2 class="card-title text-white"><a href="{% pageurl book %}" class="text-white">{{ book.book_title }}</a></h2>
+            </div>
+            <div class="card-body card-text text-white">
+                {{ book.description|richtext }}
+            </div>
+        </div>
+        <div class="col-4 card bg-primary p-4">
+            {% image book.cover_image min-2000x400 as cover_image %}
+            <img src="{{ cover_image.url }}" class="p-4">
+        </div>
+    </div>
     {% endfor %}
+</div>
 
 {% endblock %}
