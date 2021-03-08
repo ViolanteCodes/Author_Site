@@ -11,19 +11,19 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: left;
-    height: 75vh">
+    height: 80vh">
         <div class="col-lg-4 col-sm-0">
         </div>
         <div class="col-lg-4 col-sm-6">
             <div class="w-100">
-                <h3 class="text-light d-inline-block display-4 text-right">
+                <blockquote class="text-light d-inline-block h1 text-center mt-3 text-uppercase">
                     {{page.caption_text|richtext}}
-                </h3>
+                </blockquote>
             </div>
         </div>
-        <div class="col-lg-4 col-sm-6 height-75 align-self-left">
+        <div class="col-lg-4 col-sm-6 align-self-center justify-self-center fade-in">
             {% image page.book_image height-2000 as bookimg %}
-            <img src="{{bookimg.url}}" class="max-height-50 d-inline-block p-4 w-100">
+            <img src="{{bookimg.url}}" class="max-vh-60 d-inline-block p-4 mw-100">
         </div>
 </div>
 
