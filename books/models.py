@@ -1,5 +1,6 @@
 from django import forms
 from django.db import models
+from django.shortcuts import render
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
@@ -8,7 +9,6 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePane
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image
 from wagtail.search import index
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from django.utils.text import slugify  
 from wagtailmenus.models import MenuPageMixin
 from wagtailmenus.panels import menupage_panel
@@ -146,20 +146,17 @@ class BookPage(Page):
         InlinePanel('book_reviews', label="Book Reviews"),
     ]
 
-class BooksIndexPage(Page, RoutablePageMixin, MenuPageMixin):
+class BooksIndexPage(Page, MenuPageMixin):
     intro = RichTextField(blank=True)
-
-    @route(r'^$', name='all') # override the default route
-    def all_books(self, request):
-        """View Function that shows all books."""
-        book_list = BookPage.objects.all()
-        return self.render(
-            request, 
-            context_overrides={
-                'book_list': book_list,
-            })
-    
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full"),
         menupage_panel,
     ]
+    
+    def serve(self, request):
+        """Custom serve method"""
+        book_list = BookPage.objects.live().order_by('-sort_order')
+        return render(request, 'books/books_index_page.html', {
+            'page':self,
+            'book_list':book_list
+        })

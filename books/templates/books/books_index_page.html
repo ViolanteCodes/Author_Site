@@ -3,6 +3,7 @@
 {% block body_class %}template-homepage{% endblock %}
 {% block content %}
 
+<!-- Render Top/Intro Block -->
 <div class="container-fluid container-dark py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -16,26 +17,33 @@
             </div>
         </div>
     </div>
+<!-- End Intro block, start iterating through book blocks -->
     {% for book in book_list %}
-    <div class="container card bg-primary mt-3">
+    <div class="container card bg-primary mt-4 mb-5 p-3">
         <div class="row justify-content-center">
             <!-- Left hand column -->
-            <div class="col-lg-8 col-md-6 text-white bg-primary">
-                <h2 class="card-title text-white text-center">
-                    <a href="{% pageurl book %}" class="text-white">{{ book.book_title }}</a>
+            <div class="col-12 col-md-8 align-items-center text-center order-2 order-md-1">
+                <h2 class="card-title text-white text-center my-2">
+                    <a href="{% pageurl book %}" class="orange-link">{{ book.book_title }}</a>
                 </h2>
-                <div class="card-body card-text text-white">
+                <p class="card-body card-text text-white my-2">
                     {% if book.teaser %}
-                    {{ book.teaser }}
+                    {{ book.teaser|richtext }}
                     {% else %}
-                    {{ book.description|truncatewords:50}}
+                    {{ book.description|richtext|truncatewords:100}}
                     {% endif %}
+                </p>
+                <div class="row justify-content-center mt-4 mb-2">
+                    <a class="btn btn-outline-warning p-2 newsletter-font text-uppercase" 
+                    href="{% pageurl book %}" role="button">Find out more</a>
                 </div>
             </div>
             <!-- Right hand column -->
-            <div class="col-lg-5 xl-6 text-center order-1 order-lg-2 mb-2">
+            <div class="col align-items-center text-center order-1 order-md-2">
                 {% image book.cover_image min-2000x400 as cover_image %}
-                <img src="{{ cover_image.url }}" class="mw-100" style="max-height: 25vh">
+                <a href="{% pageurl book%}">
+                    <img src="{{ cover_image.url }}" class="mw-100" style="max-height: 50vh">
+                </a>
             </div>
         <!-- Close Row -->
         </div>
