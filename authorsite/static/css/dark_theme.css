@@ -1,14 +1,56 @@
 html {
     background-color: #1a1a1a;
-    font:aliceblue;
+    color:#dee0e2;
 }
-body {
+body.template-homepage{
     background-color: #1a1a1a;
-    font:aliceblue;
+    color:#dee0e2;
 }
-.jumbotron-landing background-image {
-    opacity: 50%;
+div.container-dark {
+    background-color: #141414;
 }
-.jumbotron {
-    background-color: #1a1a1a;
+/* Landing Hero Image Styling */
+div.max-vh-75 {
+    max-height: 75vh;
+}
+img.max-vh-60 {
+    max-height: 60vh;
+}
+/* Landing Hero Caption Styling */
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+@include media-breakpoint-up(md) {
+    .display-4 {
+        font-size: 3.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+  }
+/* Books Page Custom Styling */
+.line-height-high {
+    line-height: 1.5rem;
+}
+.text-light {
+    color: #dee0e2;
+}
+.text-muted {
+   color:#C0C6C9
+}
+a.buy-link:hover{
+    color:#ff0000;
+}
+/*Footer Custom Styling*/
+.icon-big {
+    font-size: xx-large;
+}
+a.footer-link {
+    color:#C0C6C9;
+    transition: ease 0.3s;
+}
+a.footer-link:hover {
+    color:#f0ad4e;
+    transition: ease 0.3s;
 }

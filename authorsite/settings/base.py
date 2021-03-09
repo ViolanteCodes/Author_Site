@@ -30,11 +30,14 @@ INSTALLED_APPS = [
     'search',
     'blog',
     'contact',
+    'books',
 
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
+    'wagtail.contrib.settings',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
+    'wagtail.contrib.routable_page',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -48,7 +51,6 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'bootstrap4',
-
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -182,6 +184,10 @@ try:
     from .local import *
 except ImportError:
     pass
+
+FONT_AWESOME_URL = config('FONT_AWESOME_URL')
+
+# Django-Bootstrap Settings
 
 BOOTSTRAP4 = {
     # The complete URL to the Bootstrap CSS file
