@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'taggit',
     'bootstrap4',
 
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -186,6 +185,8 @@ try:
 except ImportError:
     pass
 
+FONT_AWESOME_URL = config('FONT_AWESOME_URL')
+
 # Django-Bootstrap Settings
 
 BOOTSTRAP4 = {
@@ -265,12 +266,5 @@ BOOTSTRAP4 = {
     'field_renderers': {
         'default': 'bootstrap4.renderers.FieldRenderer',
         'inline': 'bootstrap4.renderers.InlineFieldRenderer',
-    },
-}
-# DJANGO ICONS SETTINGS
-# Assign name and icon.
-DJANGO_ICONS = {
-    "ICONS": {
-        "twitter": {"name": "fab fa-twitter"},
     },
 }

@@ -1,10 +1,12 @@
 {% load static wagtailuserbar %}
  <!-- Load the tag library -->
 {% load bootstrap4 %}
-
 <!-- Load CSS and JavaScript -->
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
+<!-- Load Custom Filters -->
+{% load custom_filters %}
+
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -24,6 +26,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
+        <!-- Get Font Awesome URL from .env file with custom tag -->
+        <script src="{% get_font_awesome_url %}"></script>
 
         {% block extra_css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/dark_theme.css' %}">

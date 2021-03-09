@@ -42,3 +42,13 @@ img.max-vh-60 {
 a.buy-link:hover{
     color:#ff0000;
 }
+/*Footer Custom Styling*/
+.icon-big {
+    font-size: xx-large;
+}
+a.footer-link {
+    color:#C0C6C9;
+}
+a.footer-link:hover {
+    color:#ff0000;
+}
