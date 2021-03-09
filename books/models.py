@@ -146,18 +146,18 @@ class BookPage(Page):
         InlinePanel('book_reviews', label="Book Reviews"),
     ]
 
-class BooksIndexPage(Page, RoutablePageMixin, MenuPageMixin):
+class BooksIndexPage(Page, MenuPageMixin):
     intro = RichTextField(blank=True)
+
+    @route(r'^$', name='all') # override the default route
+    def all_books(self, request):
+        """View Function that shows all books."""
+        book_list = BookPage.objects.live()
+        return self.render(request, context_overrides={
+            'book_list': book_list,
+        })
+    
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full"),
         menupage_panel,
     ]
-    @route(r'^$', name='all') # override the default route
-    def all_books(self, request):
-        """
-       View Function that shows all books.
-        """
-        book_list = BookPage.objects.live().order_by('-sort_order')
-        return self.render(request, context_overrides={
-            'book_list': book_list,
-        })
