@@ -16,6 +16,18 @@ div.max-vh-75 {
 img.max-vh-60 {
     max-height: 60vh;
 }
+/*Header Custom Styling (also used in footer)*/
+a.orange-link {
+    color: #f0ad4e;
+    transition: ease 0.3s;
+    text-shadow: 2px 2px black;
+}
+a.orange-link:hover {
+    color:#C0C6C9;
+    text-decoration: underline dashed #C0C6C9;
+    text-shadow: 2px 2px #1a1a1a;
+    transition: ease 0.3s;
+}
 /* Landing Hero Caption Styling */
 .display-4 {
     font-size: 2.5rem;
@@ -46,9 +58,16 @@ a.buy-link:hover{
 .icon-big {
     font-size: xx-large;
 }
+.newsletter-font {
+    font-size: x-large;
+}
+div.footer-box {
+    background-color: rgba(26, 26, 26, 75%);
+}
 a.footer-link {
     color:#C0C6C9;
     transition: ease 0.3s;
+    text-shadow: 2px 2px black;
 }
 a.footer-link:hover {
     color:#f0ad4e;

@@ -4,11 +4,14 @@
 
 ## Setup Order
 
+Set .env
+Set social links
+Create Any content warnings / genres (Django models from admin panel)
 Page Creation Order
 Home Page + make available for menu
 BookIndexPage as Child of HomePage + make available for menu
-Series Page as Child of BookIndexPage + make available for menu
-Book Page as Child of SeriesPage
+Series Page as Child of BookIndexPage(Don't make available for menu at this time. Templates not created and styled yet.)
+Book Page as Child of SeriesPage(Don't do at this time. Can do later. Templates not styled.)
 
 Custom Settings for social media links (from admin panel)
 
@@ -35,3 +38,4 @@ Boostrap theme link in environment
 - Add sample .env file
 - create success url/template
 - finish contact form model (header injection/ try except block)
+- remove series from this model - not used by this person.
