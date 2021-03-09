@@ -38,4 +38,4 @@ Boostrap theme link in environment
 - Add sample .env file
 - create success url/template
 - finish contact form model (header injection/ try except block)
-- remove series from this model - not used by this person.
+- remove series from this model - will not be used by client at this time.
