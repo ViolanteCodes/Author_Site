@@ -12,9 +12,9 @@
       <li class="nav-item dropdown ml-4">
         <a class="nav-link dropdown-toggle text-light h3" data-toggle="dropdown" 
           href="{{ item.href }}" role="button" aria-haspopup="true" aria-expanded="false">{{ item.text }}</a>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu bg-primary text-light">
           {% for sub_item in item.sub_menu.items %}
-          <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item.text }}</a>
+          <a class="dropdown-item bg-primary text-light text-uppercase h5" href="{{ sub_item.href }}">{{ sub_item.text }}</a>
           {% endfor %}
         </div>
       </li>

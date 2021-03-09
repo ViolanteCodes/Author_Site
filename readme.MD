@@ -10,11 +10,14 @@ BookIndexPage as Child of HomePage + make available for menu
 Series Page as Child of BookIndexPage + make available for menu
 Book Page as Child of SeriesPage
 
+Custom Settings for social media links (from admin panel)
+
 ## X.X Packages
 
 ### X.X Python-Decouple
 
 Environmental Variable Storage
+Settings for name of site and CDN links like fontawesome, bootstrap theme file, stored as environmental variables. 
 
 ### X.X Wagtail-Menus
 

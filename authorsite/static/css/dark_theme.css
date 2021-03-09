@@ -48,7 +48,9 @@ a.buy-link:hover{
 }
 a.footer-link {
     color:#C0C6C9;
+    transition: ease 0.5s;
 }
 a.footer-link:hover {
     color:#ff0000;
+    transition: ease 0.5s;
 }
