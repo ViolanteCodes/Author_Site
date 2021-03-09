@@ -1,6 +1,5 @@
 from django import forms
 from django.db import models
-
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
@@ -11,6 +10,8 @@ from wagtail.images.models import Image
 from wagtail.search import index
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from django.utils.text import slugify  
+from wagtailmenus.models import MenuPageMixin
+from wagtailmenus.panels import menupage_panel
 
 # Create your models here.
 
@@ -145,10 +146,11 @@ class BookPage(Page):
         InlinePanel('book_reviews', label="Book Reviews"),
     ]
 
-class BooksIndexPage(RoutablePageMixin, Page):
+class BooksIndexPage(Page, RoutablePageMixin, MenuPageMixin):
     intro = RichTextField(blank=True)
     content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
+        FieldPanel('intro', classname="full"),
+        menupage_panel,
     ]
     @route(r'^$', name='all') # override the default route
     def all_books(self, request):
