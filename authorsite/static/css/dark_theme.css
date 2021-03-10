@@ -54,6 +54,23 @@ a.orange-link:hover {
 a.buy-link:hover{
     color:#ff0000;
 }
+/* Contact Page Custom Styling/forms */
+input {
+    width: 80%;
+    background-color: #1a1a1a;
+    border-color:#f0ad4e;
+    padding: 10px;
+    color: #C0C6C9;
+    font-size: large;
+}
+textarea {
+    width: 80%;
+    background-color: #1a1a1a;
+    border-color: #f0ad4e;
+    padding: 10px;
+    color: #C0C6C9;
+    font-size: large;
+}
 /*Footer Custom Styling*/
 .icon-big {
     font-size: xx-large;
