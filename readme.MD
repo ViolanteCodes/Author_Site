@@ -1,10 +1,19 @@
-# A Sample Display Site for An Author, created with Django-Wagtail CMS
+# A Modular Display Site for Authors, Created with Django/Wagtail CMS
 
 ## Table of Contents
 
-## Setup Order
+## X.X Setup
+### X.X Quickstart
 
-Set .env
+1. Clone the repo
+2. Create virtual env
+3. Delete the first line of sample_env.txt and rename the file to just .env
+4. make migrations and migrate (python manage.py makemigrations; python manage.py migrate)
+5. Setup superuser
+6. Open admin panel and set social links in settings.
+
+### X.X Settings Detail
+
 Set social links
 Create Any content warnings / genres (Django models from admin panel)
 Page Creation Order
@@ -14,6 +23,14 @@ Series Page as Child of BookIndexPage(Don't make available for menu at this time
 Book Page as Child of SeriesPage(Don't do at this time. Can do later. Templates not styled.)
 
 Custom Settings for social media links (from admin panel)
+
+### Setup Add Pages
+
+## Custom Features
+
+### Custom Template Tags
+### Pass-through Menu
+### Parent Page types
 
 ## X.X Packages
 
