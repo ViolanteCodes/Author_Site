@@ -50,6 +50,8 @@ class AuthorPage(Page):
         FieldPanel('author_bio'),
         ImageChooserPanel('author_photo'),
     ]
+    # Parent page / subpage type rules
+    parent_page_types = ['books.BooksIndexPage']
 
 class SeriesPage(Page):
     """A page to represent a book series."""
@@ -62,6 +64,9 @@ class SeriesPage(Page):
         FieldPanel('series_description'),
         FieldPanel('total_books'),
     ]
+    # Parent page / subpage type rules
+
+    parent_page_types = ['books.BooksIndexPage']
 
 ### The following models are displayed on the Books Page ###
 # The ABSTRACT model for Buy Links, with panels
@@ -145,6 +150,8 @@ class BookPage(Page):
         InlinePanel('buy_links', label="Buy Links"),
         InlinePanel('book_reviews', label="Book Reviews"),
     ]
+    # Parent page / subpage type rules
+    parent_page_types = ['books.BooksIndexPage']
 
 class BooksIndexPage(Page, MenuPageMixin):
     intro = RichTextField(blank=True)
