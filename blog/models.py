@@ -65,7 +65,6 @@ class BlogPage(Page):
 class BlogTagIndexPage(Page):
 
     def get_context(self, request):
-
         # Filter by tag
         tag = request.GET.get('tag')
         blogpages = BlogPage.objects.filter(tags__name=tag)
@@ -74,4 +73,7 @@ class BlogTagIndexPage(Page):
         context = super().get_context(request)
         context['blogpages'] = blogpages
         return context
+
+    # Parent page / subpage type rules
+    parent_page_types = ['blog.BlogIndexPage']
 
