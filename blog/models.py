@@ -59,6 +59,9 @@ class BlogPage(Page):
         index.SearchField('tags')
     ]
 
+    # Parent page / subpage type rules
+    parent_page_types = ['blog.BlogIndexPage']
+
 class BlogTagIndexPage(Page):
 
     def get_context(self, request):
