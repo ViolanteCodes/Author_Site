@@ -1,0 +1,12 @@
+# Delete this line and rename the file to .env!
+SECRET_KEY=any_string_you_want
+DEBUG=True
+WAGTAIL_SITE_NAME = this_name_will_be_used_in_menu
+ALLOWED_HOSTS=
+DB_NAME = db.sqlite3
+BOOTSTRAP_THEME =
+FONT_AWESOME_URL =
+EMAIL_BACKEND = django.core.mail.backends.smtp.EmailBackend
+CONTACT_EMAIL = 
+EMAIL_HOST_USER = myemailusername
+EMAIL_HOST_PASSWORD 
